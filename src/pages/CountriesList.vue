@@ -16,6 +16,7 @@ ${el.alpha2Code.toLowerCase()}.png`"
 
 <script setup>
 import { ref } from "vue";
+import {useCountryStore} from "../stores/country"
 
 const countries = ref(null);
 
@@ -26,6 +27,18 @@ async function getCountries() {
 }
 
 getCountries();
+
+const country = useCountryStore();
+
+function showCountry(el){
+  country.flag = `https://flagpedia.net/data/flags/icon/72x54/
+${el.alpha2Code.toLowerCase()}.png`;
+  country.name = el.name.common;
+  country.capital = el.capital[0];
+  country.area = el.area;
+  country.borders = el.borders;
+}
+
 </script>
 
 <style></style>
